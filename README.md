@@ -1,4 +1,4 @@
-<h1 align="center" id="title">🛬 Airline Microservice Application 🛫</h1>
+<h1 align="center" id="title">🛬 Airline Microservices Application 🛫</h1>
 
 <p id="description">The application based on a microservices architecture works as a registration for flights, customers and reservations system for a fictitious airline.</p>
 
