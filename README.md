@@ -28,6 +28,8 @@
 <h3>Edge Server</h3>
 <div><img src="https://github.com/user-attachments/assets/50a659a2-563f-4708-b324-249d83ef16ac" alt="project-screenshot"></div>
 <p>Spring Cloud Gateway was used as an edge server, taking advantage of the default load balancer.</p>
+<p>The following image shows the routes configuration from the Gateway Server</p>
+<div><img src="https://github.com/user-attachments/assets/6331f865-f821-4ac8-ab00-f14b01b6f3fa" alt="project-screenshot"></div>
 <h3>Config Server</h3>
 <p>Spring Cloud Config is used to externalize the application configuration, and some endpoints offered by the Spring Actuator module are also used to update configurations in microservices. Finally, a Github repository was used to store the different configuration files and connect it to the Config Server.</p>
 <div><img src="https://github.com/user-attachments/assets/ea2ad2aa-ff96-4f0d-8880-ce8c46216cb1" alt="project-screenshot"></div>
