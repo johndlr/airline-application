@@ -18,15 +18,24 @@ public class GatewayserverApplication {
 		return routeLocatorBuilder.routes()
 				.route(predicateSpec -> predicateSpec
 						.path("/airline/customer/**")
-						.filters(gatewayFilterSpec -> gatewayFilterSpec.rewritePath("/airline/customer/(?<segment>.*)", "/${segment}"))
+						.filters(gatewayFilterSpec -> gatewayFilterSpec.rewritePath("/airline/customer/(?<segment>.*)", "/${segment}")
+								.circuitBreaker(config -> config
+										.setName("customerCircuitBreaker")
+										.setFallbackUri("forward:/contactSupport")))
 						.uri("lb://CUSTOMER"))
 				.route(predicateSpec -> predicateSpec
 						.path("/airline/flight/**")
-						.filters(gatewayFilterSpec -> gatewayFilterSpec.rewritePath("/airline/flight/(?<segment>.*)", "/${segment}"))
+						.filters(gatewayFilterSpec -> gatewayFilterSpec.rewritePath("/airline/flight/(?<segment>.*)", "/${segment}")
+								.circuitBreaker(config -> config
+										.setName("flightCircuitBreaker")
+										.setFallbackUri("forward:/contactSupport")))
 						.uri("lb://FLIGHT"))
 				.route(predicateSpec -> predicateSpec
 						.path("/airline/reservation/**")
-						.filters(gatewayFilterSpec -> gatewayFilterSpec.rewritePath("/airline/reservation/(?<segment>.*)", "/${segment}"))
+						.filters(gatewayFilterSpec -> gatewayFilterSpec.rewritePath("/airline/reservation/(?<segment>.*)", "/${segment}")
+								.circuitBreaker(config -> config
+										.setName("reservationCircuitBreaker")
+										.setFallbackUri("forward:/contactSupport")))
 						.uri("lb://RESERVATION")).build();
 	}
 

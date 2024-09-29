@@ -16,6 +16,10 @@ spring:
       ddl-auto: update
   config:
     import: "optional:configserver:http://localhost:8071/"
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
 
 server:
   port: 8080
@@ -47,3 +51,13 @@ info:
     name: "reservation"
     description: "Airline Reservation Application"
     version: "1.0.0"
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 10
+        permitted-number-of-calls-in-half-open-state: 2
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 100000
+
