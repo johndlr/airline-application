@@ -36,6 +36,12 @@
 <br/>
 <p>The following image shows the Eureka Server configurations loaded from the Github repository by the Config Server</p>
 <div><img src="https://github.com/user-attachments/assets/9f0f297b-f7a0-499a-80a5-458fdb2d1f11" alt="project-screenshot"></div>
+<h3>Async Communication using RabbitMQ</h3>
+<p>To achieve asynchronous communication between the reservation and message services, spring cloud stream, spring cloud function and rabbitmq were used. The general scheme is as follows:</p>
+<div><img src="https://github.com/user-attachments/assets/adbd71d2-0659-4782-a66d-60a6f9b25357" alt="project-screenshot"></div>
+<br/>
+<p>In rabbitmq the queues were registered successfully</p>
+<div><img src="https://github.com/user-attachments/assets/08f91896-c4a3-4040-8bec-33ba8a7cf079" alt="project-screenshot"></div>
 
 <h2>💻 Built with</h2>
 
