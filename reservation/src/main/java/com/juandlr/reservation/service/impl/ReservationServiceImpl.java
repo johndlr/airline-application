@@ -12,6 +12,10 @@ import com.juandlr.reservation.service.ReservationService;
 import com.juandlr.reservation.service.client.CustomerClient;
 import com.juandlr.reservation.service.client.FlightClient;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -19,14 +23,24 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 public class ReservationServiceImpl implements ReservationService {
 
     private final ReservationRepository reservationRepository;
 
+    private static final Logger log = LoggerFactory.getLogger(ReservationServiceImpl.class);
+
     private final CustomerClient customerClient;
 
     private final FlightClient flightClient;
+
+    private final StreamBridge streamBridge;
+
+    public ReservationServiceImpl(ReservationRepository reservationRepository, @Qualifier("com.juandlr.reservation.service.client.CustomerClient") CustomerClient customerClient, @Qualifier("com.juandlr.reservation.service.client.FlightClient") FlightClient flightClient, StreamBridge streamBridge) {
+        this.reservationRepository = reservationRepository;
+        this.customerClient = customerClient;
+        this.flightClient = flightClient;
+        this.streamBridge = streamBridge;
+    }
 
     @Override
     public String createReservation(ReservationCreateDto reservationCreateDto) {
@@ -34,7 +48,7 @@ public class ReservationServiceImpl implements ReservationService {
         FlightDto flightDto = getFlightDtoUsingFeignClient(reservationCreateDto.getFlightNumber());
 
         // Fetch customer details
-        getCustomerDtoUsingFeignClient(reservationCreateDto.getCustomerMobileNumber());
+        CustomerDto customerDto = getCustomerDtoUsingFeignClient(reservationCreateDto.getCustomerMobileNumber());
 
         // Check if reservation already exists
         Optional<Reservation> reservationOptional = reservationRepository.findByFlightNumber(flightDto.getFlightNumber());
@@ -51,8 +65,19 @@ public class ReservationServiceImpl implements ReservationService {
         //Save the new reservation
         reservationRepository.save(reservation);
 
+        //Sending communication
+        sendCommunication(reservation, customerDto);
+
         //Return the reservation number
         return reservation.getReservationNumber();
+    }
+
+    private void sendCommunication(Reservation reservation, CustomerDto customerDto){
+        ReservationMsgDto reservationMsgDto = new ReservationMsgDto(reservation.getReservationNumber(), reservation.getFlightNumber(),
+                customerDto.getName(),customerDto.getLastName(),customerDto.getEmail(),customerDto.getMobileNumber());
+        log.info("Sending communication request for the details: " + reservationMsgDto);
+        boolean result = streamBridge.send("sendCommunication-out-0", reservationMsgDto);
+        log.info("Is the communication request successfully triggered?: " + result);
     }
 
     @Override
@@ -102,6 +127,21 @@ public class ReservationServiceImpl implements ReservationService {
         //Delete reservation from DB
         reservationRepository.delete(reservationFromDB);
     }
+
+    @Override
+    public boolean updateCommunicationStatus(String reservationNumber) {
+        boolean isUpdated = false;
+        if (reservationNumber != null){
+            Reservation reservation = reservationRepository.findByReservationNumber(reservationNumber)
+                    .orElseThrow(()-> new ReservationNotFoundException("\"Reservation not found, please check your information."));
+            reservation.setCommunicationSw(true);
+            reservationRepository.save(reservation);
+            isUpdated = true;
+
+        }
+        return isUpdated;
+    }
+
 
     public CustomerDto getCustomerDtoUsingFeignClient(String customerMobileNumber){
         ResponseEntity<CustomerDto> customerResponse = customerClient.fetchCustomer(customerMobileNumber);

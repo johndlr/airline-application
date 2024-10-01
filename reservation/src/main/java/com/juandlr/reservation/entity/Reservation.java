@@ -34,4 +34,7 @@ public class Reservation extends BaseEntity{
     @Column(name = "reservation_date")
     private Date reservationDate;
 
+    @Column(name = "communication_sw")
+    private Boolean communicationSw;
+
 }

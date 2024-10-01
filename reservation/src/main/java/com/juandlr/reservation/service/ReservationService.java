@@ -10,4 +10,6 @@ public interface ReservationService {
     void updateReservation(ReservationDto reservationDto);
 
     void deleteReservation(String reservationNumber);
+
+    boolean updateCommunicationStatus(String reservationNumber);
 }
