@@ -58,3 +58,5 @@ Technologies used in the project:
 *   Postman
 *   Swagger
 *   GitHub
+*   RabbitMQ
+*   Kafka
