@@ -42,6 +42,14 @@
 <br/>
 <p>In rabbitmq the queues were registered successfully</p>
 <div><img src="https://github.com/user-attachments/assets/08f91896-c4a3-4040-8bec-33ba8a7cf079" alt="project-screenshot"></div>
+<h3>Async Communication using Kafka</h3>
+<p>With the help of Spring Cloud Stream, the application was reconfigured to now use Kafka as a message broker, configurations were added to the Reservation and Message services.</p>
+<p>Before executing the business logic of the Reservation and Message services, the Kafka broker had the following information:</p>
+<div><img src="https://github.com/user-attachments/assets/92b7357b-ee53-4e71-8e19-ca8e93fba105" alt="project-screenshot"></div>
+<div><img src="https://github.com/user-attachments/assets/3a865759-c09e-4045-8517-f768fa9c61aa" alt="project-screenshot"></div>
+<br/>
+<p>After executing this logic, the messages were successfully received and processed:</p>
+<div><img src="https://github.com/user-attachments/assets/7b97b464-577f-4048-bccd-1420761212e9" alt="project-screenshot"></div>
 
 <h2>💻 Built with</h2>
 
