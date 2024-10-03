@@ -109,12 +109,15 @@ For the creation of these REST services, some methodologies of native cloud appl
   <br/>
 
   Airline Flight Operators, access credentials provided to Postman and the corresponding response
-  <div><img src="https://github.com/user-attachments/assets/b3d54476-e6b1-405f-ad2e-5ab11843023f" alt="project-screenshot"></div>
+  <div><img src="https://github.com/user-attachments/assets/be428abc-90b5-4919-9e51-f82e5e467683" alt="project-screenshot"></div>
   <div><img src="https://github.com/user-attachments/assets/b807d156-b2eb-4c2d-9c57-2e98e3b02f22" alt="project-screenshot"></div>
   <br/>
 
   In all three cases, the behavior is as expected. The role-based authorization system is functioning correctly.
 </p>
+
+
+
 
 <h2>💻 Built with</h2>
 
