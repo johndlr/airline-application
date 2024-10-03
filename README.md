@@ -65,6 +65,57 @@ For the creation of these REST services, some methodologies of native cloud appl
 <p>After executing this logic, the messages were successfully received and processed:</p>
 <div><img src="https://github.com/user-attachments/assets/7b97b464-577f-4048-bccd-1420761212e9" alt="project-screenshot"></div>
 
+<h3>Implementing security in the application</h3>
+<p>
+  To implement application security, the OAuth2 protocol was used for authorization, OpenID Connect for authentication, and Keycloak for Identity and Access Management (IAM) processes.
+  
+  The OAuth2 authorization flow chosen for implementation in the application is the client credentials type.
+  
+  The Edge Server was established as the resource server, and Keycloak as the authorization server.
+  
+  Within the Edge Server, permissions were configured based on roles.
+  
+  In the application context, there are 3 application users:
+
+  * Airline Call Center, with the roles RESERVATION, CUSTOMER, FLIGHT, the user with all permissions, meaning they can create flights, customers, and reservations.
+  * Airline Customer Operators, with the only role CUSTOMER, this user is limited to managing airline customers.
+  * Airline Flight Operators, with the only role FLIGHT, this user is limited to managing airline flights."
+</p>
+<div><img src="https://github.com/user-attachments/assets/2fb41d83-69c2-40b8-9949-4039afd31103" alt="project-screenshot"></div>
+<br/>
+<p>
+  For this documentation, some tests performed on the flight service using the three application users are presented.  
+  Endpoint from flight service:
+  <div><img src="https://github.com/user-attachments/assets/f45b5cc3-fb9d-4748-8cd1-87b5e72787b4" alt="project-screenshot"></div>
+  <br/>
+  Claims from JWT Token for Airline Call Center:
+  <div><img src="https://github.com/user-attachments/assets/4c299fae-1db3-497a-9f41-acd9c6ef3d57" alt="project-screenshot"></div>
+  <br/>
+  Claims from JWT Token for Airline Customer Operators:
+  <div><img src="https://github.com/user-attachments/assets/c8d9cce1-8b43-40db-be8f-cf3d172a3697" alt="project-screenshot"></div>
+  <br/>
+  Claims from JWT Token for Airline Flight Operators:
+  <div><img src="https://github.com/user-attachments/assets/966556e7-ed95-4c35-9bca-051dcdf04415" alt="project-screenshot"></div>
+  <br/>
+
+  Airline Call Center, access credentials provided to Postman and the corresponding response
+  <div><img src="https://github.com/user-attachments/assets/ffac1ce1-b563-4e40-bf5c-bd8e87e007e0" alt="project-screenshot"></div>
+  <div><img src="https://github.com/user-attachments/assets/0a446557-9077-4b0e-9ec0-9c2001f381c2" alt="project-screenshot"></div>
+  <br/>
+
+  Airline Customer Operators, access credentials provided to Postman and the corresponding response
+  <div><img src="https://github.com/user-attachments/assets/1db0338d-62a3-4e7b-9cf9-73a3d9da81a0" alt="project-screenshot"></div>
+  <div><img src="https://github.com/user-attachments/assets/8d530df9-5e37-4397-a536-e9ab0027260f" alt="project-screenshot"></div>
+  <br/>
+
+  Airline Flight Operators, access credentials provided to Postman and the corresponding response
+  <div><img src="https://github.com/user-attachments/assets/b3d54476-e6b1-405f-ad2e-5ab11843023f" alt="project-screenshot"></div>
+  <div><img src="https://github.com/user-attachments/assets/b807d156-b2eb-4c2d-9c57-2e98e3b02f22" alt="project-screenshot"></div>
+  <br/>
+
+  In all three cases, the behavior is as expected. The role-based authorization system is functioning correctly.
+</p>
+
 <h2>💻 Built with</h2>
 
 Technologies used in the project:
