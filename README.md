@@ -50,13 +50,14 @@ For the creation of these REST services, some methodologies of native cloud appl
 <br/>
 <p>The following image shows the Eureka Server configurations loaded from the Github repository by the Config Server</p>
 <div><img src="https://github.com/user-attachments/assets/9f0f297b-f7a0-499a-80a5-458fdb2d1f11" alt="project-screenshot"></div>
-<h3>Async Communication using RabbitMQ</h3>
-<p>To achieve asynchronous communication between the reservation and message services, spring cloud stream, spring cloud function and rabbitmq were used. A new service called Message was created, which simulates sending an email and SMS when creating a new reservation. The general scheme is as follows:</p>
+<h3>Async Communication</h3>
+<p>To achieve asynchronous communication between the reservation and message services, spring cloud stream, spring cloud function,rabbitmq and kafka were used. A new service called Message was created, which simulates sending an email and SMS when creating a new reservation. The general scheme is as follows:</p>
 <div><img src="https://github.com/user-attachments/assets/adbd71d2-0659-4782-a66d-60a6f9b25357" alt="project-screenshot"></div>
 <br/>
+<h4>Async Communication using RabbitMQ</h4>
 <p>In rabbitmq the queues were registered successfully</p>
 <div><img src="https://github.com/user-attachments/assets/08f91896-c4a3-4040-8bec-33ba8a7cf079" alt="project-screenshot"></div>
-<h3>Async Communication using Kafka</h3>
+<h4>Async Communication using Kafka</h4>
 <p>With the help of Spring Cloud Stream, the application was reconfigured to now use Kafka as a message broker, configurations were added to the Reservation and Message services.</p>
 <p>Before executing the business logic of the Reservation and Message services, the Kafka broker had the following information:</p>
 <div><img src="https://github.com/user-attachments/assets/92b7357b-ee53-4e71-8e19-ca8e93fba105" alt="project-screenshot"></div>
