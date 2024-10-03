@@ -1,9 +1,23 @@
 <h1 align="center" id="title">🛬 Airline Microservices Application 🛫</h1>
 
-<p id="description">The application based on a microservices architecture works as a registration for flights, customers and reservations system for a fictitious airline.</p>
+<p id="description">The application, based on a microservices architecture, functions as a registration system for flights, customers, and reservations for a fictitious airline.</p>
 
 <h2>🧐 Features</h2>
-<h3>Three services were created: flight, customer and reservation, each one exposes different endpoints for CRUD functions.</h3>
+<h3>General application architecture</h3>
+<div><img src="https://github.com/user-attachments/assets/9f5ef269-eb7f-4c0a-a160-0d63c27917f5" alt="project-screenshot" width="600" height="480"></div>
+<h3>Core of the application</h3>
+<p>
+  Initially, the application's users will be airline employees. Various stakeholders can be considered, such as customer service, flight schedulers, etc. For the development phase, Postman was used to interact with the system.
+
+At the core of the application, there are three REST services: flight, reservation, and customer. Generally, the operations performed by each REST service are similar, varying only in their specific context:
+
+* Create
+* Update
+* Retrieve
+* Delete
+  
+For the creation of these REST services, some methodologies of native cloud application development were followed, such as API First, one codebase – one application, dependency management, etc. The primary technology used is Spring Boot, taking advantage of all its power and features. For documentation purposes, OpenAPI Specification was used.
+</p>
 <h4>Flight Service ✈️</h4>
 <p>Manages all the information related to an airline flight</p>
 <div><img src="https://github.com/user-attachments/assets/2d32f3c6-16ba-473f-a7cf-f06ead869644" alt="project-screenshot"></div>
