@@ -33,7 +33,7 @@ For the creation of these REST services, some methodologies of native cloud appl
 <div><img src="https://github.com/user-attachments/assets/631480e6-e426-4873-93d1-e2a26e3d0e45" alt="project-screenshot"></div>
 <br/>
 <div><img src="https://github.com/user-attachments/assets/a9a0fedf-9876-48d0-8246-adeea37a2d9c" alt="project-screenshot"></div>
-<h4>How do they communicate?</h4>
+<h4>How do they communicate? Synchronous Communication</h4>
 <div><img src="https://github.com/user-attachments/assets/fa079621-6475-41d9-9d17-7cf701753b96" alt="project-screenshot" width="240" height="240"></div>
 <p>Spring Cloud OpenFeign was used to communicate the reservation service with the other two services. In this way, complete reservation information is obtained, as well as flight and client data.</p>
 <h3>Service Discovery</h3>
@@ -67,7 +67,7 @@ For the creation of these REST services, some methodologies of native cloud appl
 <p>After executing this logic, the messages were successfully received and processed:</p>
 <div><img src="https://github.com/user-attachments/assets/7b97b464-577f-4048-bccd-1420761212e9" alt="project-screenshot"></div>
 <h4>Email sending</h4>
-<p>The following technologies were used to send the email when creating the reservation: Spring Boot Starter, MailSMTP Gmail and JavaMailSender.
+<p>The following technologies were used to send the email when creating the reservation: Spring Boot Starter Mail, SMTP Gmail and JavaMailSender.
 In addition, when the email is sent successfully, an event is sent to the Reservation service to update the status in the database as sent.
 The results are as follows:
 </p>
