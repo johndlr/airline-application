@@ -155,3 +155,5 @@ Technologies used in the project:
 *   GitHub
 *   RabbitMQ
 *   Kafka
+*   Spring Mail
+*   SMTP Gmail
