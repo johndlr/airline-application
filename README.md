@@ -1,9 +1,23 @@
 <h1 align="center" id="title">🛬 Airline Microservices Application 🛫</h1>
 
-<p id="description">The application based on a microservices architecture works as a registration for flights, customers and reservations system for a fictitious airline.</p>
+<p id="description">The application, based on a microservices architecture, functions as a registration system for flights, customers, and reservations for a fictitious airline.</p>
 
 <h2>🧐 Features</h2>
-<h3>Three services were created: flight, customer and reservation, each one exposes different endpoints for CRUD functions.</h3>
+<h3>General application architecture</h3>
+<div><img src="https://github.com/user-attachments/assets/9f5ef269-eb7f-4c0a-a160-0d63c27917f5" alt="project-screenshot" width="600" height="480"></div>
+<h3>Core of the application</h3>
+<p>
+  Initially, users of the application will be employees of the airline. Several actors can be considered, such as customer support, flight schedulers, etc. For the development phase, Postman was used to interact with the system.
+
+At the core of the application, there are three REST services: flight, reservation, and customer. Generally, the operations performed by each REST service are similar, varying only in their specific context:
+
+* Create
+* Update
+* Retrieve
+* Delete
+  
+For the creation of these REST services, some methodologies of native cloud application development were followed, such as API First, one codebase – one application, dependency management, etc. The primary technology used is Spring Boot, taking advantage of all its power and features. For documentation purposes, OpenAPI Specification was used.
+</p>
 <h4>Flight Service ✈️</h4>
 <p>Manages all the information related to an airline flight</p>
 <div><img src="https://github.com/user-attachments/assets/2d32f3c6-16ba-473f-a7cf-f06ead869644" alt="project-screenshot"></div>
@@ -36,12 +50,75 @@
 <br/>
 <p>The following image shows the Eureka Server configurations loaded from the Github repository by the Config Server</p>
 <div><img src="https://github.com/user-attachments/assets/9f0f297b-f7a0-499a-80a5-458fdb2d1f11" alt="project-screenshot"></div>
-<h3>Async Communication using RabbitMQ</h3>
-<p>To achieve asynchronous communication between the reservation and message services, spring cloud stream, spring cloud function and rabbitmq were used. A new service called Message was created, which simulates sending an email and SMS when creating a new reservation. The general scheme is as follows:</p>
+<h3>Async Communication</h3>
+<p>To achieve asynchronous communication between the reservation and message services, spring cloud stream, spring cloud function,rabbitmq and kafka were used. A new service called Message was created, which simulates sending an email and SMS when creating a new reservation. The general scheme is as follows:</p>
 <div><img src="https://github.com/user-attachments/assets/adbd71d2-0659-4782-a66d-60a6f9b25357" alt="project-screenshot"></div>
 <br/>
+<h4>Async Communication using RabbitMQ</h4>
 <p>In rabbitmq the queues were registered successfully</p>
 <div><img src="https://github.com/user-attachments/assets/08f91896-c4a3-4040-8bec-33ba8a7cf079" alt="project-screenshot"></div>
+<h4>Async Communication using Kafka</h4>
+<p>With the help of Spring Cloud Stream, the application was reconfigured to now use Kafka as a message broker, configurations were added to the Reservation and Message services.</p>
+<p>Before executing the business logic of the Reservation and Message services, the Kafka broker had the following information:</p>
+<div><img src="https://github.com/user-attachments/assets/92b7357b-ee53-4e71-8e19-ca8e93fba105" alt="project-screenshot"></div>
+<div><img src="https://github.com/user-attachments/assets/3a865759-c09e-4045-8517-f768fa9c61aa" alt="project-screenshot"></div>
+<br/>
+<p>After executing this logic, the messages were successfully received and processed:</p>
+<div><img src="https://github.com/user-attachments/assets/7b97b464-577f-4048-bccd-1420761212e9" alt="project-screenshot"></div>
+
+<h3>Implementing security in the application</h3>
+<p>
+  To implement application security, the OAuth2 protocol was used for authorization, OpenID Connect for authentication, and Keycloak for Identity and Access Management (IAM) processes.
+  
+  The OAuth2 authorization flow chosen for implementation in the application is the client credentials type.
+  
+  The Edge Server was established as the resource server, and Keycloak as the authorization server.
+  
+  Within the Edge Server, permissions were configured based on roles.
+  
+  In the application context, there are 3 application users:
+
+  * Airline Call Center, with the roles RESERVATION, CUSTOMER, FLIGHT, the user with all permissions, meaning they can create flights, customers, and reservations.
+  * Airline Customer Operators, with the only role CUSTOMER, this user is limited to managing airline customers.
+  * Airline Flight Operators, with the only role FLIGHT, this user is limited to managing airline flights."
+</p>
+<div><img src="https://github.com/user-attachments/assets/2fb41d83-69c2-40b8-9949-4039afd31103" alt="project-screenshot"></div>
+<br/>
+<p>
+  For this documentation, some tests performed on the flight service using the three application users are presented.  
+  Endpoint from flight service:
+  <div><img src="https://github.com/user-attachments/assets/f45b5cc3-fb9d-4748-8cd1-87b5e72787b4" alt="project-screenshot"></div>
+  <br/>
+  Claims from JWT Token for Airline Call Center:
+  <div><img src="https://github.com/user-attachments/assets/4c299fae-1db3-497a-9f41-acd9c6ef3d57" alt="project-screenshot"></div>
+  <br/>
+  Claims from JWT Token for Airline Customer Operators:
+  <div><img src="https://github.com/user-attachments/assets/c8d9cce1-8b43-40db-be8f-cf3d172a3697" alt="project-screenshot"></div>
+  <br/>
+  Claims from JWT Token for Airline Flight Operators:
+  <div><img src="https://github.com/user-attachments/assets/966556e7-ed95-4c35-9bca-051dcdf04415" alt="project-screenshot"></div>
+  <br/>
+
+  Airline Call Center, access credentials provided to Postman and the corresponding response
+  <div><img src="https://github.com/user-attachments/assets/ffac1ce1-b563-4e40-bf5c-bd8e87e007e0" alt="project-screenshot"></div>
+  <div><img src="https://github.com/user-attachments/assets/0a446557-9077-4b0e-9ec0-9c2001f381c2" alt="project-screenshot"></div>
+  <br/>
+
+  Airline Customer Operators, access credentials provided to Postman and the corresponding response
+  <div><img src="https://github.com/user-attachments/assets/1db0338d-62a3-4e7b-9cf9-73a3d9da81a0" alt="project-screenshot"></div>
+  <div><img src="https://github.com/user-attachments/assets/8d530df9-5e37-4397-a536-e9ab0027260f" alt="project-screenshot"></div>
+  <br/>
+
+  Airline Flight Operators, access credentials provided to Postman and the corresponding response
+  <div><img src="https://github.com/user-attachments/assets/be428abc-90b5-4919-9e51-f82e5e467683" alt="project-screenshot"></div>
+  <div><img src="https://github.com/user-attachments/assets/b807d156-b2eb-4c2d-9c57-2e98e3b02f22" alt="project-screenshot"></div>
+  <br/>
+
+  In all three cases, the behavior is as expected. The role-based authorization system is functioning correctly.
+</p>
+
+
+
 
 <h2>💻 Built with</h2>
 
