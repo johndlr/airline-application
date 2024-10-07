@@ -1,28 +1,41 @@
-<h1 align="center" id="title">🛬 Airline Microservices Application 🛫</h1>
+<h1 align="center" id="title">Airline Microservices Application</h1>
 
-<p id="description">The application, based on a microservices architecture, functions as a registration system for flights, customers, and reservations for a fictitious airline.</p>
+<p id="description">This application, based on a microservices architecture, serves as a comprehensive registration system for flights, customers, and reservations for a fictitious airline. It demonstrates the use of modern technologies and best practices in building scalable and maintainable systems.</p>
 
-<h2>🧐 Features</h2>
-<h3>General application architecture</h3>
-<div><img src="https://github.com/user-attachments/assets/9f5ef269-eb7f-4c0a-a160-0d63c27917f5" alt="project-screenshot" width="800" height="600"></div>
-<h3>Core of the application</h3>
-<p>
-  Initially, users of the application will be employees of the airline. Several actors can be considered, such as customer support, flight schedulers, etc. For the development phase, Postman was used to interact with the system.
+<h2>Features</h2>
+<h3 align="center">General application architecture</h3>
+<div align="center"><img src="https://github.com/user-attachments/assets/9f5ef269-eb7f-4c0a-a160-0d63c27917f5" alt="project-screenshot" width="800"></div>
 
-At the core of the application, there are three REST services: flight, reservation, and customer. Generally, the operations performed by each REST service are similar, varying only in their specific context:
+### Core of the Application
 
-* Create
-* Update
-* Retrieve
-* Delete
-  
-For the creation of these REST services, some methodologies of native cloud application development were followed, such as API First, one codebase – one application, dependency management, etc. The primary technology used is Spring Boot, taking advantage of all its power and features. For documentation purposes, OpenAPI Specification was used.
-</p>
+At the core of the application, there are three REST services: __flight__ , **reservation**, and **customer**. Each service performs the standard CRUD operations (Create, Retrieve, Update, Delete) within its specific context:
+
+- **Flight Service**: Manages flight information and schedules.
+- **Reservation Service**: Handles booking and reservation details.
+- **Customer Service**: Manages customer profiles and information.
+
+For the creation of these REST services, several cloud-native application development methodologies were followed, including:
+
+- **API First**: Designing APIs before implementing the services to ensure a clear contract and better collaboration.
+- **One Codebase – One Application**: Maintaining a single codebase per service to ensure modularity and ease of maintenance.
+- **Dependency Management**: Using tools like Maven or Gradle to manage dependencies efficiently.
+
+The primary technology used is **Spring Boot**, leveraging its powerful features for building robust and scalable REST services. For API documentation, the **OpenAPI Specification** was used, providing a standard way to describe the APIs and enabling easy integration with tools like Swagger for interactive API documentation.
+
+#### Swagger UI
+Below are screenshots of the Swagger UI for the REST services:
+
+![Swagger UI Screenshot](https://github.com/user-attachments/assets/3c364999-9d3d-4d67-a745-c32e7785c545)
+
+![Swagger UI Screenshot](https://github.com/user-attachments/assets/13cb1b5a-8e2d-4e98-9fc8-84386a75b881)
+
+![Swagger UI Screenshot](https://github.com/user-attachments/assets/a9a0fedf-9876-48d0-8246-adeea37a2d9c)
+
 <h4>Flight Service ✈️</h4>
 <p>Manages all the information related to an airline flight</p>
-<div><img src="https://github.com/user-attachments/assets/2d32f3c6-16ba-473f-a7cf-f06ead869644" alt="project-screenshot"></div>
+<div><img src="https://github.com/user-attachments/assets/2d32f3c6-16ba-473f-a7cf-f06ead869644" alt="project-screenshot" width="800"></div>
 <br/>
-<div><img src="https://github.com/user-attachments/assets/3c364999-9d3d-4d67-a745-c32e7785c545" alt="project-screenshot"></div>
+<div><img src="https://github.com/user-attachments/assets/3c364999-9d3d-4d67-a745-c32e7785c545" alt="project-screenshot" width="200"></div>
 <h4>Customer Service 🧑‍💼</h4>
 <p>Manages all the information related to an airline customer</p>
 <div><img src="https://github.com/user-attachments/assets/ccf36bd2-c3a7-4c3d-b201-8efdfae18eb6" alt="project-screenshot"></div>
