@@ -29,12 +29,23 @@ management:
   info:
     env:
       enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 info:
   app:
     name: "gatewayserver"
     description: "Airline GatewayServer Application"
     version: "1.0.0"
+
+logging:
+  level:
+    com:
+      juandlr:
+        gatewayserver: DEBUG
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
 
 resilience4j:
   circuitbreaker:
