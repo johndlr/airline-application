@@ -41,13 +41,25 @@ As a simple example, below is a screenshot showing the Eureka server configurati
 
 ![ConfigServer ScreenShot](https://github.com/user-attachments/assets/9f0f297b-f7a0-499a-80a5-458fdb2d1f11)
 
+### Service Discovery
+
+The discovery service is implemented using **Spring Cloud Eureka Server**. Eureka Server acts as a registry for microservices, enabling them to discover and communicate with each other without hardcoding their locations. This dynamic service discovery mechanism is crucial for maintaining the flexibility and scalability of a microservices architecture.
+
+By registering with Eureka, each microservice provides its metadata, such as host and port, health indicator URL, and other service-specific information. Eureka clients, which are the microservices themselves, use this registry to look up other services and make remote procedure calls (RPCs) to them.
+
+The use of Eureka Server simplifies the management of service instances, supports load balancing, and enhances fault tolerance by rerouting requests to healthy instances in case of failures.
+
+Below is a screenshot of the discovery service running:
+
+<img src="https://github.com/user-attachments/assets/6f25aee4-2338-4748-b85e-2034888e5e0c" alt="Eureka Server ScreenShot" width="800"/>
+
+
 
 <h4>How do they communicate? Synchronous Communication</h4>
 <div><img src="https://github.com/user-attachments/assets/fa079621-6475-41d9-9d17-7cf701753b96" alt="project-screenshot" width="240" height="240"></div>
 <p>Spring Cloud OpenFeign was used to communicate the reservation service with the other two services. In this way, complete reservation information is obtained, as well as flight and client data.</p>
-<h3>Service Discovery</h3>
-<p>Spring Cloud Eureka Server was used for the discovery service.</p>
-<div><img src="https://github.com/user-attachments/assets/6f25aee4-2338-4748-b85e-2034888e5e0c" alt="project-screenshot"></div>
+
+
 <h3>Edge Server</h3>
 <div><img src="https://github.com/user-attachments/assets/50a659a2-563f-4708-b324-249d83ef16ac" alt="project-screenshot"></div>
 <p>Spring Cloud Gateway was used as an edge server, taking advantage of the default load balancer.</p>
