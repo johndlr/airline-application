@@ -33,9 +33,7 @@ Below are screenshots of the Swagger UI for the REST services:
 
 ### Configurations
 
-Spring Cloud Config is used to **externalize the application configuration**, adhering to the principles of cloud-native applications, such as the Twelve-Factor App methodology. This approach allows for centralized management of configuration properties, making the application more flexible and easier to manage across different environments. Additionally, some endpoints offered by the Spring Actuator module are utilized to dynamically update configurations in the microservices. The configuration files are stored in a GitHub repository, which is connected to the Config Server to provide version-controlled configuration management.
-
-The repository that contains the configurations of the different services is: [Configurations Repository](https://github.com/johndlr/airline-config)
+Spring Cloud Config is used to **externalize the application configuration**, adhering to the principles of cloud-native applications, such as the Twelve-Factor App methodology. This approach allows for centralized management of configuration properties, making the application more flexible and easier to manage across different environments. Additionally, some endpoints offered by the **Spring Actuator module** are utilized to dynamically update configurations in the microservices. The configuration files are stored in a GitHub [repository](https://github.com/johndlr/airline-config), which is connected to the Config Server to provide version-controlled configuration management.
 
 As a simple example, below is a screenshot showing the Eureka server configurations that have been loaded from the GitHub repository by the Config Server:
 
