@@ -39,7 +39,7 @@ As a simple example, below is a screenshot showing the Eureka server configurati
 
 ![ConfigServer ScreenShot](https://github.com/user-attachments/assets/9f0f297b-f7a0-499a-80a5-458fdb2d1f11)
 
-### Service Discovery
+### Discovery Service
 
 The discovery service is implemented using **Spring Cloud Eureka Server**. Eureka Server acts as a registry for microservices, enabling them to discover and communicate with each other without hardcoding their locations. This dynamic service discovery mechanism is crucial for maintaining the flexibility and scalability of a microservices architecture.
 
