@@ -4,7 +4,7 @@
 
 <h2>🧐 Features</h2>
 <h3>General application architecture</h3>
-<div><img src="https://github.com/user-attachments/assets/9f5ef269-eb7f-4c0a-a160-0d63c27917f5" alt="project-screenshot" width="600" height="480"></div>
+<div><img src="https://github.com/user-attachments/assets/9f5ef269-eb7f-4c0a-a160-0d63c27917f5" alt="project-screenshot" width="800" height="600"></div>
 <h3>Core of the application</h3>
 <p>
   Initially, users of the application will be employees of the airline. Several actors can be considered, such as customer support, flight schedulers, etc. For the development phase, Postman was used to interact with the system.
