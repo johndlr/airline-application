@@ -25,27 +25,12 @@ The primary technology used is **Spring Boot**, leveraging its powerful features
 #### Swagger UI
 Below are screenshots of the Swagger UI for the REST services:
 
-![Swagger UI Screenshot](https://github.com/user-attachments/assets/3c364999-9d3d-4d67-a745-c32e7785c545)
+![Swagger UI Screenshot](https://github.com/user-attachments/assets/4d3fd3c1-70e0-4e23-adf9-645c9071c070)
 
-![Swagger UI Screenshot](https://github.com/user-attachments/assets/13cb1b5a-8e2d-4e98-9fc8-84386a75b881)
+![Swagger UI Screenshot](https://github.com/user-attachments/assets/b241e7cb-a32a-4a61-8c4d-f4ae77c3aa9b)
 
-![Swagger UI Screenshot](https://github.com/user-attachments/assets/a9a0fedf-9876-48d0-8246-adeea37a2d9c)
+![Swagger UI Screenshot](https://github.com/user-attachments/assets/381e70a3-d322-483d-917a-24161be145ea)
 
-<h4>Flight Service ✈️</h4>
-<p>Manages all the information related to an airline flight</p>
-<div><img src="https://github.com/user-attachments/assets/2d32f3c6-16ba-473f-a7cf-f06ead869644" alt="project-screenshot" width="800"></div>
-<br/>
-<div><img src="https://github.com/user-attachments/assets/3c364999-9d3d-4d67-a745-c32e7785c545" alt="project-screenshot" width="200"></div>
-<h4>Customer Service 🧑‍💼</h4>
-<p>Manages all the information related to an airline customer</p>
-<div><img src="https://github.com/user-attachments/assets/ccf36bd2-c3a7-4c3d-b201-8efdfae18eb6" alt="project-screenshot"></div>
-<br/>
-<div><img src="https://github.com/user-attachments/assets/13cb1b5a-8e2d-4e98-9fc8-84386a75b881" alt="project-screenshot"></div>
-<h4>Reservation Service 🕗</h4>
-<p>Manages all the information related to an airline reservation</p>
-<div><img src="https://github.com/user-attachments/assets/631480e6-e426-4873-93d1-e2a26e3d0e45" alt="project-screenshot"></div>
-<br/>
-<div><img src="https://github.com/user-attachments/assets/a9a0fedf-9876-48d0-8246-adeea37a2d9c" alt="project-screenshot"></div>
 <h4>How do they communicate? Synchronous Communication</h4>
 <div><img src="https://github.com/user-attachments/assets/fa079621-6475-41d9-9d17-7cf701753b96" alt="project-screenshot" width="240" height="240"></div>
 <p>Spring Cloud OpenFeign was used to communicate the reservation service with the other two services. In this way, complete reservation information is obtained, as well as flight and client data.</p>
