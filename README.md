@@ -51,11 +51,66 @@ Below is a screenshot of the discovery service running:
 
 <img src="https://github.com/user-attachments/assets/6f25aee4-2338-4748-b85e-2034888e5e0c" alt="Eureka Server ScreenShot" width="800"/>
 
+### Inter-Service Communication
+
+To facilitate communication between services, **Spring Cloud OpenFeign** is used for synchronous communication, and **Kafka** is used for asynchronous communication.
+
+#### Synchronous Communication
+
+The **Reservation** service uses Feign clients to fetch information from the **Flight** and **Customer** services. This allows the Reservation service to gather all necessary details to create a complete reservation.
+
+#### Asynchronous Communication
+
+For asynchronous communication, **Kafka** and **Spring Cloud Stream** are used to connect the **Reservation** service with a new service called **Message**. The Message service uses **Spring Cloud Function** to send an email to the customer when a reservation is made. The email functionality is implemented using **Spring Mail**, **SMTP Gmail**, and **JavaMailSender**.
+
+Below is the general scheme of asynchronous communication between the message and reservation services:
+
+![Kafka Async Diagram ScreenShot](https://github.com/user-attachments/assets/ca36f84d-e102-4bc0-b7a5-e518a39b2d84)
 
 
-<h4>How do they communicate? Synchronous Communication</h4>
-<div><img src="https://github.com/user-attachments/assets/fa079621-6475-41d9-9d17-7cf701753b96" alt="project-screenshot" width="240" height="240"></div>
-<p>Spring Cloud OpenFeign was used to communicate the reservation service with the other two services. In this way, complete reservation information is obtained, as well as flight and client data.</p>
+#### Kafka Topics
+
+To facilitate asynchronous communication between services, Kafka topics are used. Two topics were successfully created:
+
+- **send_communication**: This topic is used to send messages from the **Reservation** service to the **Message** service, indicating that a reservation has been made and an email needs to be sent to the customer.
+- **communication_sent**: This topic is used by the **Message** service to notify the **Reservation** service that the email has been successfully sent. Upon receiving this notification, the Reservation service updates the `communication_switch` column in the reservations table.
+
+These topics enable reliable and scalable communication between services, ensuring that messages are delivered and processed asynchronously.
+
+
+Topics:
+
+![Async Communication ScreenShot](https://github.com/user-attachments/assets/92b7357b-ee53-4e71-8e19-ca8e93fba105)
+
+Consumers:
+
+![Async Communication ScreenShot](https://github.com/user-attachments/assets/3a865759-c09e-4045-8517-f768fa9c61aa)
+
+Recorded events:
+
+![Async Communication ScreenShot](https://github.com/user-attachments/assets/7b97b464-577f-4048-bccd-1420761212e9)
+
+
+#### Email sending logic in action
+
+When creating a new reservation, the event to send an email is triggered:
+
+![Async Communication ScreenShot](https://github.com/user-attachments/assets/45bd01d6-8e92-406d-bccc-4632d71d9680)
+
+Inbox:
+
+![Async Communication ScreenShot](https://github.com/user-attachments/assets/c5a40e13-5ad1-45f4-9586-0595fb04d9d4)
+
+The content of the email:
+
+![Async Communication ScreenShot](https://github.com/user-attachments/assets/107db83d-4a51-4bef-9159-e58a334ba217)
+
+Update the `communication_switch` column as true in the reservations table:
+
+![Async Communication ScreenShot](https://github.com/user-attachments/assets/e607ceb7-4229-4bc6-9d58-2114f94b7483)
+
+
+
 
 
 <h3>Edge Server</h3>
@@ -64,39 +119,7 @@ Below is a screenshot of the discovery service running:
 <p>The following image shows the routes configuration from the Gateway Server</p>
 <div><img src="https://github.com/user-attachments/assets/6331f865-f821-4ac8-ab00-f14b01b6f3fa" alt="project-screenshot"></div>
 
-<h3>Async Communication</h3>
-<p>To achieve asynchronous communication between the reservation and message services, spring cloud stream, spring cloud function,rabbitmq and kafka were used. A new service called Message was created, which simulates sending an email when creating a new reservation. The general scheme is as follows:</p>
-<div><img src="https://github.com/user-attachments/assets/adbd71d2-0659-4782-a66d-60a6f9b25357" alt="project-screenshot"></div>
-<br/>
-<h4>Async Communication using RabbitMQ</h4>
-<p>In rabbitmq the queues were registered successfully</p>
-<div><img src="https://github.com/user-attachments/assets/08f91896-c4a3-4040-8bec-33ba8a7cf079" alt="project-screenshot"></div>
-<h4>Async Communication using Kafka</h4>
-<p>With the help of Spring Cloud Stream, the application was reconfigured to now use Kafka as a message broker, configurations were added to the Reservation and Message services.</p>
-<p>Before executing the business logic of the Reservation and Message services, the Kafka broker had the following information:</p>
-<div><img src="https://github.com/user-attachments/assets/92b7357b-ee53-4e71-8e19-ca8e93fba105" alt="project-screenshot"></div>
-<br/>
-<div><img src="https://github.com/user-attachments/assets/3a865759-c09e-4045-8517-f768fa9c61aa" alt="project-screenshot"></div>
-<br/>
-<p>After executing this logic, the messages were successfully received and processed:</p>
-<div><img src="https://github.com/user-attachments/assets/7b97b464-577f-4048-bccd-1420761212e9" alt="project-screenshot"></div>
-<h4>Email sending</h4>
-<p>The following technologies were used to send the email when creating the reservation: Spring Boot Starter Mail, SMTP Gmail and JavaMailSender.
-In addition, when the email is sent successfully, an event is sent to the Reservation service to update the status in the database as sent.
-The results are as follows:
-</p>
 
-<p>In Postman we created the reservation successfully</p>
-<div><img src="https://github.com/user-attachments/assets/45bd01d6-8e92-406d-bccc-4632d71d9680" alt="project-screenshot"></div>
-<br/>
-<p>Inbox with the received email</p>
-<div><img src="https://github.com/user-attachments/assets/c5a40e13-5ad1-45f4-9586-0595fb04d9d4" alt="project-screenshot"></div>
-<br/>
-<p>The email</p>
-<div><img src="https://github.com/user-attachments/assets/107db83d-4a51-4bef-9159-e58a334ba217" alt="project-screenshot"></div>
-<br/>
-<p>The updated column in the Reservations table</p>
-<div><img src="https://github.com/user-attachments/assets/e607ceb7-4229-4bc6-9d58-2114f94b7483" alt="project-screenshot"></div>
 
 <h3>Implementing security in the application</h3>
 <p>
