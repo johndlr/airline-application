@@ -109,71 +109,110 @@ Update the `communication_switch` column as true in the reservations table:
 
 ![Async Communication ScreenShot](https://github.com/user-attachments/assets/e607ceb7-4229-4bc6-9d58-2114f94b7483)
 
+### Edge Server
 
+**Spring Cloud Gateway** was used as an edge server, taking advantage of its integration with **Spring Cloud Eureka** to utilize **Spring Cloud LoadBalancer** for distributing incoming traffic across multiple instances of the microservices. Spring Cloud Gateway provides a simple, yet powerful way to route requests, handle cross-cutting concerns such as security, monitoring, and resiliency, and manage traffic.
 
+Key features utilized include:
 
+- **Routing**: Configured routes to direct incoming requests to the appropriate microservices based on the request path and other criteria.
+- **Load Balancing**: Leveraged the integration with Spring Cloud Eureka to use Spring Cloud LoadBalancer, distributing requests evenly across service instances and enhancing the system's scalability and reliability.
+- **Security**: Implemented security measures such as authentication and authorization at the gateway level to protect the backend services.
+- **Monitoring and Metrics**: Integrated with monitoring tools to track the performance and health of the routes and services.
 
-<h3>Edge Server</h3>
-<div><img src="https://github.com/user-attachments/assets/50a659a2-563f-4708-b324-249d83ef16ac" alt="project-screenshot"></div>
-<p>Spring Cloud Gateway was used as an edge server, taking advantage of the default load balancer.</p>
-<p>The following image shows the routes configuration from the Gateway Server</p>
-<div><img src="https://github.com/user-attachments/assets/6331f865-f821-4ac8-ab00-f14b01b6f3fa" alt="project-screenshot"></div>
+The following image shows the routes configuration from the Gateway Server:
 
+![Gateway Routes Configuration](https://github.com/user-attachments/assets/6331f865-f821-4ac8-ab00-f14b01b6f3fa)
 
+### Resilience and Fault Tolerance
 
-<h3>Implementing security in the application</h3>
-<p>
-  To implement application security, the OAuth2 protocol was used for authorization, OpenID Connect for authentication, and Keycloak for Identity and Access Management (IAM) processes.
+To enhance the resilience and fault tolerance of the application, **Resilience4j** was used to implement the circuit breaker pattern in both the edge server and the Reservation service.
+
+#### Edge Server
+
+In the **Spring Cloud Gateway** (edge server), Resilience4j is used to apply the circuit breaker pattern to manage and control the flow of traffic to the backend services. This helps to prevent cascading failures and improve the overall stability of the system by temporarily blocking requests to failing services and allowing them to recover.
+
+#### Reservation Service
+
+In the **Reservation** service, Resilience4j is used to implement circuit breakers with fallback mechanisms. Specifically, it functions as a fallback class in case of errors when attempting to communicate with the **Customer** and **Flight** services. This ensures that the Reservation service can handle failures gracefully and provide a default response or alternative processing logic when the dependent services are unavailable.
+
+Key features utilized include:
+
+- **Circuit Breaker**: Monitors the calls to external services and opens the circuit if the failure rate exceeds a configured threshold, preventing further calls to the failing service.
+- **Fallback Mechanism**: Provides a fallback method or class to handle failures and return a default response or perform alternative processing when the circuit is open.
+
+### Implementing Security in the Application
+
+To implement application security, the **OAuth2** protocol was used for authorization, **OpenID Connect** for authentication, and **Keycloak** for Identity and Access Management (IAM) processes.
+
+#### Authorization Flow
+
+The OAuth2 authorization flow chosen for implementation in the application is the **client credentials** type. This flow is suitable for machine-to-machine communication where the client is acting on its own behalf.
+
+#### Components
+
+- **Edge Server**: Established as the resource server, responsible for serving the protected resources.
+- **Keycloak**: Configured as the authorization server, handling the authentication and authorization processes.
+
+#### Role-Based Access Control
+
+Within the Edge Server, permissions were configured based on roles. In the application context, there are three types of users, each with specific roles and permissions:
+
+1. **Airline Call Center**
+   - **Roles**: `RESERVATION`, `CUSTOMER`, `FLIGHT`
+   - **Permissions**: This user has all permissions, meaning they can create and manage flights, customers, and reservations.
+
+2. **Airline Customer Operators**
+   - **Role**: `CUSTOMER`
+   - **Permissions**: This user is limited to managing airline customers.
+
+3. **Airline Flight Operators**
+   - **Role**: `FLIGHT`
+   - **Permissions**: This user is limited to managing airline flights.
+
+By using Keycloak, the application benefits from a robust and flexible IAM solution that supports OAuth2 and OpenID Connect standards, ensuring secure and scalable authentication and authorization.
+
+Below are some screenshots of the authentication and authorization process:
+
+Clients created in keycloak:
+
+![Keycloack Clients](https://github.com/user-attachments/assets/2fb41d83-69c2-40b8-9949-4039afd31103)
+
+The flight creation endpoint of the Flight service is used to generally test JWT token-based authentication and role-based authorization for the three clients:
+
+![Flight Endpoint](https://github.com/user-attachments/assets/f45b5cc3-fb9d-4748-8cd1-87b5e72787b4)
+
+Claims from JWT Token for Airline Call Center:
+
+![Flight Endpoint](https://github.com/user-attachments/assets/4c299fae-1db3-497a-9f41-acd9c6ef3d57)
   
-  The OAuth2 authorization flow chosen for implementation in the application is the client credentials type.
+Claims from JWT Token for Airline Customer Operators:
+
+![Flight Endpoint](https://github.com/user-attachments/assets/c8d9cce1-8b43-40db-be8f-cf3d172a3697)
   
-  The Edge Server was established as the resource server, and Keycloak as the authorization server.
-  
-  Within the Edge Server, permissions were configured based on roles.
-  
-  In the application context, there are 3 application users:
+Claims from JWT Token for Airline Flight Operators:
 
-  * Airline Call Center, with the roles RESERVATION, CUSTOMER, FLIGHT, the user with all permissions, meaning they can create flights, customers, and reservations.
-  * Airline Customer Operators, with the only role CUSTOMER, this user is limited to managing airline customers.
-  * Airline Flight Operators, with the only role FLIGHT, this user is limited to managing airline flights."
-</p>
-<div><img src="https://github.com/user-attachments/assets/2fb41d83-69c2-40b8-9949-4039afd31103" alt="project-screenshot"></div>
-<br/>
-<p>
-  For this documentation, some tests performed on the flight service using the three application users are presented.  
-  Endpoint from flight service:
-  <div><img src="https://github.com/user-attachments/assets/f45b5cc3-fb9d-4748-8cd1-87b5e72787b4" alt="project-screenshot"></div>
-  <br/>
-  Claims from JWT Token for Airline Call Center:
-  <div><img src="https://github.com/user-attachments/assets/4c299fae-1db3-497a-9f41-acd9c6ef3d57" alt="project-screenshot"></div>
-  <br/>
-  Claims from JWT Token for Airline Customer Operators:
-  <div><img src="https://github.com/user-attachments/assets/c8d9cce1-8b43-40db-be8f-cf3d172a3697" alt="project-screenshot"></div>
-  <br/>
-  Claims from JWT Token for Airline Flight Operators:
-  <div><img src="https://github.com/user-attachments/assets/966556e7-ed95-4c35-9bca-051dcdf04415" alt="project-screenshot"></div>
-  <br/>
+![Flight Endpoint](https://github.com/user-attachments/assets/966556e7-ed95-4c35-9bca-051dcdf04415)
 
-  Airline Call Center, access credentials provided to Postman and the corresponding response
-  <div><img src="https://github.com/user-attachments/assets/ffac1ce1-b563-4e40-bf5c-bd8e87e007e0" alt="project-screenshot"></div>
-  <div><img src="https://github.com/user-attachments/assets/0a446557-9077-4b0e-9ec0-9c2001f381c2" alt="project-screenshot"></div>
-  <br/>
+Airline Call Center, access credentials provided to Postman and the corresponding response
 
-  Airline Customer Operators, access credentials provided to Postman and the corresponding response
-  <div><img src="https://github.com/user-attachments/assets/1db0338d-62a3-4e7b-9cf9-73a3d9da81a0" alt="project-screenshot"></div>
-  <div><img src="https://github.com/user-attachments/assets/8d530df9-5e37-4397-a536-e9ab0027260f" alt="project-screenshot"></div>
-  <br/>
+![Flight Endpoint](https://github.com/user-attachments/assets/ffac1ce1-b563-4e40-bf5c-bd8e87e007e0)
 
-  Airline Flight Operators, access credentials provided to Postman and the corresponding response
-  <div><img src="https://github.com/user-attachments/assets/be428abc-90b5-4919-9e51-f82e5e467683" alt="project-screenshot"></div>
-  <div><img src="https://github.com/user-attachments/assets/b807d156-b2eb-4c2d-9c57-2e98e3b02f22" alt="project-screenshot"></div>
-  <br/>
+![Flight Endpoint](https://github.com/user-attachments/assets/0a446557-9077-4b0e-9ec0-9c2001f381c2)
 
-  In all three cases, the behavior is as expected. The role-based authorization system is functioning correctly.
-</p>
+Airline Customer Operators, access credentials provided to Postman and the corresponding response
 
+![Flight Endpoint](https://github.com/user-attachments/assets/1db0338d-62a3-4e7b-9cf9-73a3d9da81a0)
 
+![Flight Endpoint](https://github.com/user-attachments/assets/8d530df9-5e37-4397-a536-e9ab0027260f) 
 
+Airline Flight Operators, access credentials provided to Postman and the corresponding response
+
+![Flight Endpoint](https://github.com/user-attachments/assets/be428abc-90b5-4919-9e51-f82e5e467683)
+
+![Flight Endpoint](https://github.com/user-attachments/assets/b807d156-b2eb-4c2d-9c57-2e98e3b02f22) 
+
+In all three cases, the behavior is as expected. The role-based authorization system is functioning correctly.
 
 <h2>💻 Built with</h2>
 
@@ -185,12 +224,12 @@ Technologies used in the project:
 *   Lombok
 *   H2 Data Base
 *   Spring Cloud
+*   Spring Security
 *   Keycloak
 *   Docker
 *   Postman
 *   Swagger
 *   GitHub
-*   RabbitMQ
 *   Kafka
 *   Spring Mail
 *   SMTP Gmail
