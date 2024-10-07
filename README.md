@@ -1,4 +1,4 @@
-<h1 align="center" id="title">Airline Microservices Application</h1>
+<h1 align="center" id="title">Airline Reservation System Using Microservices</h1>
 
 <p id="description">This application, based on a microservices architecture, serves as a comprehensive registration system for flights, customers, and reservations for a fictitious airline. It demonstrates the use of modern technologies and best practices in building scalable and maintainable systems.</p>
 
