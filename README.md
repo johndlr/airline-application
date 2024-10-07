@@ -31,6 +31,17 @@ Below are screenshots of the Swagger UI for the REST services:
 
 ![Swagger UI Screenshot](https://github.com/user-attachments/assets/381e70a3-d322-483d-917a-24161be145ea)
 
+### Configurations
+
+Spring Cloud Config is used to **externalize the application configuration**, adhering to the principles of cloud-native applications, such as the Twelve-Factor App methodology. This approach allows for centralized management of configuration properties, making the application more flexible and easier to manage across different environments. Additionally, some endpoints offered by the Spring Actuator module are utilized to dynamically update configurations in the microservices. The configuration files are stored in a GitHub repository, which is connected to the Config Server to provide version-controlled configuration management.
+
+The repository that contains the configurations of the different services is: [Configurations Repository](https://github.com/johndlr/airline-config)
+
+As a simple example, below is a screenshot showing the Eureka server configurations that have been loaded from the GitHub repository by the Config Server:
+
+![ConfigServer ScreenShot](https://github.com/user-attachments/assets/9f0f297b-f7a0-499a-80a5-458fdb2d1f11)
+
+
 <h4>How do they communicate? Synchronous Communication</h4>
 <div><img src="https://github.com/user-attachments/assets/fa079621-6475-41d9-9d17-7cf701753b96" alt="project-screenshot" width="240" height="240"></div>
 <p>Spring Cloud OpenFeign was used to communicate the reservation service with the other two services. In this way, complete reservation information is obtained, as well as flight and client data.</p>
@@ -42,12 +53,7 @@ Below are screenshots of the Swagger UI for the REST services:
 <p>Spring Cloud Gateway was used as an edge server, taking advantage of the default load balancer.</p>
 <p>The following image shows the routes configuration from the Gateway Server</p>
 <div><img src="https://github.com/user-attachments/assets/6331f865-f821-4ac8-ab00-f14b01b6f3fa" alt="project-screenshot"></div>
-<h3>Config Server</h3>
-<p>Spring Cloud Config is used to externalize the application configuration, and some endpoints offered by the Spring Actuator module are also used to update configurations in microservices. Finally, a Github repository was used to store the different configuration files and connect it to the Config Server.</p>
-<div><img src="https://github.com/user-attachments/assets/ea2ad2aa-ff96-4f0d-8880-ce8c46216cb1" alt="project-screenshot"></div>
-<br/>
-<p>The following image shows the Eureka Server configurations loaded from the Github repository by the Config Server</p>
-<div><img src="https://github.com/user-attachments/assets/9f0f297b-f7a0-499a-80a5-458fdb2d1f11" alt="project-screenshot"></div>
+
 <h3>Async Communication</h3>
 <p>To achieve asynchronous communication between the reservation and message services, spring cloud stream, spring cloud function,rabbitmq and kafka were used. A new service called Message was created, which simulates sending an email when creating a new reservation. The general scheme is as follows:</p>
 <div><img src="https://github.com/user-attachments/assets/adbd71d2-0659-4782-a66d-60a6f9b25357" alt="project-screenshot"></div>
