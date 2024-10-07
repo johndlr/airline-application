@@ -55,7 +55,7 @@ public class FlightController {
     }
 
     @Operation(
-            summary = "Fetch flight Details REST API",
+            summary = "Fetch Flight Details REST API",
             description = "REST API to fetch flight"
     )
     @ApiResponses({
@@ -83,7 +83,7 @@ public class FlightController {
     }
 
     @Operation(
-            summary = "Update flight Details REST API",
+            summary = "Update Flight Details REST API",
             description = "REST API to update flight"
     )
     @ApiResponses({
@@ -107,7 +107,7 @@ public class FlightController {
     }
 
     @Operation(
-            summary = "Delete flight Details REST API",
+            summary = "Delete Flight Details REST API",
             description = "REST API to delete flight based on a flight number"
     )
     @ApiResponses({

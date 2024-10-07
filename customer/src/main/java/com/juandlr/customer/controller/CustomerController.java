@@ -109,7 +109,7 @@ public class CustomerController {
     }
 
     @Operation(
-            summary = "Delete customer Details REST API",
+            summary = "Delete Customer Details REST API",
             description = "REST API to delete customer based on a mobile number"
     )
     @ApiResponses({
