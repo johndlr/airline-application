@@ -370,9 +370,9 @@ services:
     depends_on:
       reservation:
         condition: service_healthy
-      customer:
-        condition: service_healthy
       flight:
+        condition: service_healthy
+      customer:
         condition: service_healthy
     environment:
       SPRING_APPLICATION_NAME: "gatewayserver"
