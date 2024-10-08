@@ -31,8 +31,6 @@ Below are screenshots of the Swagger UI for the REST services:
 
 ![Swagger UI Screenshot](https://github.com/user-attachments/assets/381e70a3-d322-483d-917a-24161be145ea)
 
-<br/>
-
 ### Configurations
 
 Spring Cloud Config is used to **externalize the application configuration**, adhering to the principles of cloud-native applications, such as the Twelve-Factor App methodology. This approach allows for centralized management of configuration properties, making the application more flexible and easier to manage across different environments. Additionally, some endpoints offered by the **Spring Actuator module** are utilized to dynamically update configurations in the microservices. The configuration files are stored in a GitHub [repository](https://github.com/johndlr/airline-config), which is connected to the Config Server to provide version-controlled configuration management.
@@ -40,8 +38,6 @@ Spring Cloud Config is used to **externalize the application configuration**, ad
 As a simple example, below is a screenshot showing the Eureka server configurations that have been loaded from the GitHub repository by the Config Server:
 
 ![ConfigServer ScreenShot](https://github.com/user-attachments/assets/9f0f297b-f7a0-499a-80a5-458fdb2d1f11)
-
-<br/>
 
 ### Discovery Service
 
@@ -55,7 +51,7 @@ Below is a screenshot of the discovery service running:
 
 <img src="https://github.com/user-attachments/assets/6f25aee4-2338-4748-b85e-2034888e5e0c" alt="Eureka Server ScreenShot" width="800"/>
 
-<br/>
+
 
 ### Inter-Service Communication
 
@@ -112,7 +108,7 @@ Update the `communication_switch` column as true in the reservations table:
 
 ![Async Communication ScreenShot](https://github.com/user-attachments/assets/e607ceb7-4229-4bc6-9d58-2114f94b7483)
 
-<br/>
+
 
 ### Edge Server
 
@@ -128,8 +124,6 @@ Key features utilized include:
 The following image shows the routes configuration from the Gateway Server:
 
 ![Gateway Routes Configuration](https://github.com/user-attachments/assets/6331f865-f821-4ac8-ab00-f14b01b6f3fa)
-
-<br/>
 
 ### Resilience and Fault Tolerance
 
@@ -147,8 +141,6 @@ Key features utilized include:
 
 - **Circuit Breaker**: Monitors the calls to external services and opens the circuit if the failure rate exceeds a configured threshold, preventing further calls to the failing service.
 - **Fallback Mechanism**: Provides a fallback method or class to handle failures and return a default response or perform alternative processing when the circuit is open.
-
-<br/>
 
 ### Implementing Security in the Application
 
@@ -223,8 +215,6 @@ Airline Flight Operators, access credentials provided to Postman and the corresp
 
 In all three cases, the behavior is as expected. The role-based authorization system is functioning correctly.
 
-<br/>
-
 ### Observability
 
 Observability is a crucial aspect of cloud-native applications, enabling you to monitor, log, and trace the behavior of your services. This project implements observability using various tools and technologies to ensure comprehensive monitoring and troubleshooting capabilities.
@@ -252,6 +242,7 @@ For metrics, the project uses Spring Actuator, Micrometer, and Prometheus:
 For distributed tracing, the project uses OpenTelemetry and Tempo:
 
 ***OpenTelemetry***: A set of APIs, libraries, agents, and instrumentation to provide observability into cloud-native applications. OpenTelemetry supports distributed tracing, metrics, and logging.
+
 ***Tempo***: A high-scale, easy-to-use, and cost-effective distributed tracing backend. Tempo is designed to integrate seamlessly with Grafana for trace visualization.
 
 #### Visualization
@@ -295,8 +286,6 @@ Route of the request through the different services:
 ![Screenshot 2024-10-07 192815](https://github.com/user-attachments/assets/c6f5e97b-e0cb-4ec7-967b-702b3670273c)
 
 ![Screenshot 2024-10-07 192825](https://github.com/user-attachments/assets/fcb188fc-8018-4060-b739-79ddca0ea514)
-
-<br/>
 
 ### Docker Compose
 
