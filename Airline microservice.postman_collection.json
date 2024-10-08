@@ -1,0 +1,526 @@
+{
+	"info": {
+		"_postman_id": "fe5c262b-5b45-4371-8483-7033c252d0d4",
+		"name": "Airline microservice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33953400"
+	},
+	"item": [
+		{
+			"name": "Flight",
+			"item": [
+				{
+					"name": "Create Flight",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": {
+								"clientSecret": "hKJ9b69Ce1YGerKICrdxiLgEXM1TsGPf",
+								"clientId": "airline-callcenter-cc",
+								"client_authentication": "body",
+								"scope": "openid email profile",
+								"accessTokenUrl": "http://localhost:7080/realms/master/protocol/openid-connect/token",
+								"grant_type": "client_credentials",
+								"tokenName": "clientcredentials_accesstoken",
+								"addTokenTo": "header"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \r\n    \"origin\": \"JFK\",\r\n    \"destination\": \"LAX\",\r\n    \"departureTime\": \"2024-11-04T05:00:00Z\",\r\n    \"arrivalTime\": \"2024-11-04T09:17:00Z\",\r\n    \"aircraftModel\": \"Boeing 777\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8072/airline/flight/api/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Flight",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8072/airline/flight/api/fetch?flightNumber=FNE3E453",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"airline",
+								"flight",
+								"api",
+								"fetch"
+							],
+							"query": [
+								{
+									"key": "flightNumber",
+									"value": "FNE3E453"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Flight",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightNumber\": \"FNFFBAF2\",\r\n    \"origin\": \"JFK\",\r\n    \"destination\": \"LAX\",\r\n    \"departureTime\": \"2024-11-04T09:00:00.000+00:00\",\r\n    \"arrivalTime\": \"2024-11-04T14:25:00.000+00:00\",\r\n    \"aircraftModel\": \"Boeing 777\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8072/airline/flight/api/update"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Flight",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8072/airline/flight/api/delete?flightNumber=FNFFBAF2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"airline",
+								"flight",
+								"api",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "flightNumber",
+									"value": "FNFFBAF2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Contact Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8072/airline/flight/api/contact-info"
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Config",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:8072/airline/flight/actuator/refresh"
+					},
+					"response": []
+				},
+				{
+					"name": "Shutdown",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:8072/airline/flight/actuator/shutdown"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Create Customer",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": {
+								"clientSecret": "hKJ9b69Ce1YGerKICrdxiLgEXM1TsGPf",
+								"client_authentication": "body",
+								"scope": "openid email profile",
+								"clientId": "airline-callcenter-cc",
+								"accessTokenUrl": "http://localhost:7080/realms/master/protocol/openid-connect/token",
+								"grant_type": "client_credentials",
+								"tokenName": "clientcredentials_accesstoken",
+								"addTokenTo": "header"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Juan\",\r\n    \"lastName\": \"Jaramillo\",\r\n    \"email\": \"cbi2192001444@gmail.com\",\r\n    \"mobileNumber\": \"5512131415\",\r\n    \"addressDto\": {\r\n        \"street\": \"456 Secondary St\",\r\n        \"city\": \"Los Angeles\",\r\n        \"state\": \"CA\",\r\n        \"zipCode\": \"70850\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8072/airline/customer/api/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8072/airline/customer/api/fetch?mobileNumber=5512131415",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"airline",
+								"customer",
+								"api",
+								"fetch"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "5512131415"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Rodrigo\",\r\n    \"lastName\": \"Sarabia\",\r\n    \"email\": \"rodri88@example.com\",\r\n    \"mobileNumber\": \"5512131415\",\r\n    \"addressDto\": {\r\n        \"street\": \"456 Secondary St\",\r\n        \"city\": \"Los Angeles\",\r\n        \"state\": \"CA\",\r\n        \"zipCode\": \"79587\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8072/airline/customer/api/update"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8072/airline/customer/api/delete?mobileNumber=5512131415",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"airline",
+								"customer",
+								"api",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "5512131415"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Contact Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8072/airline/customer/api/contact-info"
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Config",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:8072/airline/customer/actuator/refresh"
+					},
+					"response": []
+				},
+				{
+					"name": "Shutdown",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:8072/airline/customer/actuator/shutdown"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reservation",
+			"item": [
+				{
+					"name": "Create Reservation",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": {
+								"clientSecret": "hKJ9b69Ce1YGerKICrdxiLgEXM1TsGPf",
+								"clientId": "airline-callcenter-cc",
+								"client_authentication": "body",
+								"scope": "openid email profile",
+								"accessTokenUrl": "http://localhost:7080/realms/master/protocol/openid-connect/token",
+								"grant_type": "client_credentials",
+								"tokenName": "clientcredentials_accesstoken",
+								"addTokenTo": "header"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightNumber\": \"FN33ACDE\",\r\n    \"customerMobileNumber\": \"5512131415\",\r\n    \"seatNumber\": \"C115\",\r\n    \"reservationDate\": \"2023-10-21T12:30:00Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8072/airline/reservation/api/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Reservation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8072/airline/reservation/api/fetch?reservationNumber=RESE6591",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8072",
+							"path": [
+								"airline",
+								"reservation",
+								"api",
+								"fetch"
+							],
+							"query": [
+								{
+									"key": "reservationNumber",
+									"value": "RESE6591"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Reservation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"reservationNumber\": \"RES123456789\",\r\n    \"flightNumber\": \"NYLA1819\",\r\n    \"customerMobileNumber\": \"5512131415\",\r\n    \"seatNumber\": \"A18\",\r\n    \"reservationDate\": \"2023-10-01T15:30:00Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/reservation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"reservation"
+							],
+							"query": [
+								{
+									"key": "reservationNumber",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Reservation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/reservation?reservationNumber=RES123456789",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"reservation"
+							],
+							"query": [
+								{
+									"key": "reservationNumber",
+									"value": "RES123456789"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Config",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:8090/actuator/refresh"
+					},
+					"response": []
+				},
+				{
+					"name": "Shutdown",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:8090/actuator/shutdown"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Message",
+			"item": [
+				{
+					"name": "email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"reservationNumber\": \"FN23BA47\",\n    \"name\": \"Marcus\",\n    \"lastName\": \"Fenix\",\n    \"email\": \"cgo@example.com\",\n    \"mobileNumber\": \"5512131415\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9010/email"
+					},
+					"response": []
+				},
+				{
+					"name": "sms",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"reservationNumber\": \"FN23BA47\",\n    \"name\": \"Marcus\",\n    \"lastName\": \"Fenix\",\n    \"email\": \"cgo@example.com\",\n    \"mobileNumber\": \"5512131415\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9010/sms"
+					},
+					"response": []
+				},
+				{
+					"name": "emailsms",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"reservationNumber\": \"FN23BA47\",\n    \"name\": \"Marcus\",\n    \"lastName\": \"Fenix\",\n    \"email\": \"cgo@example.com\",\n    \"mobileNumber\": \"5512131415\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9010/emailsms"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Keycloack",
+			"item": [
+				{
+					"name": "Client_Credentials_Access_Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "airline-customer-operators-cc",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "fDxLCDvwusMFfewgTcr2KBM0O2ZYCHRv",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "openid email profile",
+									"type": "text"
+								}
+							]
+						},
+						"url": "http://localhost:7080/realms/master/protocol/openid-connect/token"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
