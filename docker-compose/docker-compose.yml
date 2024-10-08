@@ -368,11 +368,11 @@ services:
     ports:
       - "8072:8072"
     depends_on:
-      accounts:
+      reservation:
         condition: service_healthy
-      loans:
+      customer:
         condition: service_healthy
-      cards:
+      flight:
         condition: service_healthy
     environment:
       SPRING_APPLICATION_NAME: "gatewayserver"
