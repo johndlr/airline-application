@@ -112,12 +112,12 @@ Update the `communication_switch` column as true in the reservations table:
 
 ### Edge Server
 
-**Spring Cloud Gateway** was used as an edge server, taking advantage of its integration with **Spring Cloud Eureka** to utilize **Spring Cloud LoadBalancer** for distributing incoming traffic across multiple instances of the microservices. Spring Cloud Gateway provides a simple, yet powerful way to route requests, handle cross-cutting concerns such as security, monitoring, and resiliency, and manage traffic.
+**Spring Cloud Gateway** was used as an edge server, taking advantage of its integration with **Spring Cloud Eureka**. This way, we have an **L7 load balancer** with the function of distributing incoming traffic between several instances of the microservices based on URLs and HTTP. Spring Cloud Gateway offers a simple but powerful way to route requests, handle cross-cutting issues such as security, monitoring and resilience, and manage traffic.
 
 Key features utilized include:
 
 - **Routing**: Configured routes to direct incoming requests to the appropriate microservices based on the request path and other criteria.
-- **Load Balancing**: Leveraged the integration with Spring Cloud Eureka to use Spring Cloud LoadBalancer, distributing requests evenly across service instances and enhancing the system's scalability and reliability.
+- **L7 Load Balancer**: The integration with Spring Cloud Eureka was leveraged to have a **client side L7 load balancer**, distributing requests evenly between service instances and improving the scalability and reliability of the system.
 - **Security**: Implemented security measures such as authentication and authorization at the gateway level to protect the backend services.
 - **Monitoring and Metrics**: Integrated with monitoring tools to track the performance and health of the routes and services.
 
