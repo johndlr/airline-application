@@ -303,7 +303,7 @@ The images for the services were built using [Google Jib](https://github.com/Goo
 
 The application has been deployed on a local Kubernetes cluster. To streamline this process, we utilized Helm, a powerful package manager for Kubernetes, along with the Bitnami Library for Kubernetes.
 
-Bitnami Charts
+#### Bitnami Charts
 During the deployment phase, we leveraged Bitnami [charts](https://github.com/bitnami/charts) for several third-party services, including:
 
 * **Keycloak**: An open-source identity and access management solution.
@@ -311,7 +311,7 @@ During the deployment phase, we leveraged Bitnami [charts](https://github.com/bi
 * **Grafana Stack**: A set of tools for data visualization and monitoring.
 These pre-built charts significantly accelerated the setup process, allowing us to focus on the core functionalities of our application.
 
-Custom Charts
+#### Custom Charts
 For the main services of the application (e.g., reservation, flight, message) we built custom Helm charts from scratch. This approach enabled us to tailor the deployment configuration to meet our specific requirements and optimize the management of our microservices.
 
 #### Implementation of charts
