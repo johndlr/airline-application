@@ -1,0 +1,24 @@
+deploymentName: customer-deployment
+serviceName: customer
+appLabel: customer
+appName: customer
+
+replicaCount: 1
+
+image:
+  repository: johndlr/customer
+  tag: v1
+
+containerPort: 9000
+
+service:
+  type: ClusterIP
+  port: 9000
+  targetPort: 9000
+
+appname_enable: true
+config_enabled: true
+eureka_enabled: true
+resourceeserver_enabled: false
+otel_enabled: true
+kafka_enabled: false

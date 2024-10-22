@@ -1,0 +1,24 @@
+deploymentName: reservation-deployment
+serviceName: reservation
+appLabel: reservation
+appName: reservation
+
+replicaCount: 1
+
+image:
+  repository: johndlr/reservation
+  tag: v1
+
+containerPort: 8080
+
+service:
+  type: ClusterIP
+  port: 8080
+  targetPort: 8080
+
+appname_enable: true
+config_enabled: true
+eureka_enabled: true
+resourceeserver_enabled: false
+otel_enabled: true
+kafka_enabled: true

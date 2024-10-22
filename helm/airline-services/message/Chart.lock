@@ -1,0 +1,6 @@
+dependencies:
+- name: airline-common
+  repository: file://../../airline-common
+  version: 0.1.0
+digest: sha256:b087f1333d40545a5e207b2c181dfaa52c0917084d4349e898b5ee6bd130e777
+generated: "2024-10-18T13:35:37.6137083-06:00"

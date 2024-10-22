@@ -1,0 +1,27 @@
+dependencies:
+- name: airline-common
+  repository: file://../../airline-common
+  version: 0.1.0
+- name: configserver
+  repository: file://../../airline-services/configserver
+  version: 0.1.0
+- name: eurekaserver
+  repository: file://../../airline-services/eurekaserver
+  version: 0.1.0
+- name: reservation
+  repository: file://../../airline-services/reservation
+  version: 0.1.0
+- name: flight
+  repository: file://../../airline-services/flight
+  version: 0.1.0
+- name: customer
+  repository: file://../../airline-services/customer
+  version: 0.1.0
+- name: gatewayserver
+  repository: file://../../airline-services/gatewayserver
+  version: 0.1.0
+- name: message
+  repository: file://../../airline-services/message
+  version: 0.1.0
+digest: sha256:1848b40040b958e55d10e192b21f35313743239e2a44838319a676973e0bef35
+generated: "2024-10-19T16:17:33.4057353-06:00"
