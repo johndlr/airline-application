@@ -33,7 +33,7 @@ Below are screenshots of the Swagger UI for the REST services:
 
 ### Configurations
 
-Spring Cloud Config is used to **externalize the application configuration**, adhering to the principles of cloud-native applications, such as the Twelve-Factor App methodology. This approach allows for centralized management of configuration properties, making the application more flexible and easier to manage across different environments. Additionally, some endpoints offered by the **Spring Actuator module** are utilized to dynamically update configurations in the microservices. The configuration files are stored in a GitHub [repository](https://github.com/johndlr/airline-config), which is connected to the Config Server to provide version-controlled configuration management.
+Spring Cloud Config is used to **externalize the application configuration**, adhering to the principles of cloud-native applications, such as the Twelve-Factor App methodology. This approach allows for centralized management of configuration properties, making the application more flexible and easier to manage across different environments. Additionally, some endpoints offered by the **Spring Actuator module** are utilized to dynamically update configurations in the microservices. The configuration files are stored in a GitHub [repository](https://github.com/johndlr/airline-config), which is connected to the Config Server to provide version-controlled configuration management.  
 
 As a simple example, below is a screenshot showing the Eureka server configurations that have been loaded from the GitHub repository by the Config Server:
 
@@ -299,6 +299,55 @@ The images for the services were built using [Google Jib](https://github.com/Goo
 
 ![Screenshot 2024-10-07 190647](https://github.com/user-attachments/assets/61638e25-49dc-4436-94d3-b7779d204e77)
 
+### Kubernetes and Helm
+
+The application has been deployed on a local Kubernetes cluster. To streamline this process, we utilized Helm, a powerful package manager for Kubernetes, along with the Bitnami Library for Kubernetes.
+
+Bitnami Charts
+During the deployment phase, we leveraged Bitnami [charts](https://github.com/bitnami/charts) for several third-party services, including:
+
+* **Keycloak**: An open-source identity and access management solution.
+* **Kafka**: A distributed event streaming platform.
+* **Grafana Stack**: A set of tools for data visualization and monitoring.
+These pre-built charts significantly accelerated the setup process, allowing us to focus on the core functionalities of our application.
+
+Custom Charts
+For the main services of the application (e.g., reservation, flight, message) we built custom Helm charts from scratch. This approach enabled us to tailor the deployment configuration to meet our specific requirements and optimize the management of our microservices.
+
+#### Implementation of charts
+
+* **Airline-common**: This chart is a dependency for other charts in the airline-services directory, providing common configurations and utilities.
+  
+* **Airline-services**: Each subdirectory (e.g., eurekaserver, flight, message) represents a separate Helm chart for a specific microservice.
+  
+* **Environments**: This chart aggregates multiple services and dependencies, allowing for consistent configuration across different environments.
+  
+* **Third-party Services**: Charts for Grafana Stack, Kafka, and KeyCloak are included to ensure that observability, messaging, and security are integrated into the deployment process.
+
+**Below are some screenshots of the deployment process:**
+
+Example when building a service dependencies with helm:
+
+![Build](https://github.com/user-attachments/assets/5f1bcfbb-541c-4d01-9c20-453aa6d7fc76)
+
+
+![Build Result](https://github.com/user-attachments/assets/53148ece-066e-4a80-a89a-0c6c6fb4c29f)
+
+Example when installing a chart on the cluster using helm:
+
+![installing](https://github.com/user-attachments/assets/d2b90b14-7b33-49e3-b6b0-b652fda4dea3)
+
+![installing](https://github.com/user-attachments/assets/22953c34-db39-46e2-967a-b61ce842d0fb)
+
+Example of total images used in local deployment:
+
+![images](https://github.com/user-attachments/assets/a792106e-4f8f-41b2-8e12-1ae6f4668229)
+
+Example of the services deployed:
+
+![services deployed](https://github.com/user-attachments/assets/12802110-32b8-49b6-8c65-a5e261110484)
+
+
 <h2>💻 Built with</h2>
 
 Technologies used in the project:
@@ -319,6 +368,8 @@ Technologies used in the project:
 *   Spring Mail
 *   SMTP Gmail
 *   Grafana
+*   Helm
+*   Kubernetes
 
 
 ## License
