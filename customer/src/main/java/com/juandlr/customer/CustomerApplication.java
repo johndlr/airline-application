@@ -19,7 +19,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 				version = "v1",
 				contact = @Contact(
 						name = "Juan de la Rosa",
-						email = "apexjohn67@gmail.com",
+						email = "juandlrdev@gmail.com",
 						url = "https://github.com/johndlr"
 				)
 		)

@@ -31,24 +31,11 @@ public class CustomerController {
 
     private final CustomerContactInfoDto customerContactInfoDto;
 
-    @Operation(
-            summary = "Create Customer REST API",
-            description = "REST API to create new customer"
-    )
+    @Operation(summary = "Create Customer REST API", description = "REST API to create a new customer")
     @ApiResponses({
-            @ApiResponse(
-                    responseCode = "201",
-                    description = "HTTP Status CREATED"
-            ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "HTTP Status Internal Server Error",
-                    content = @Content(
-                            schema = @Schema(implementation = ErrorResponseDto.class)
-                    )
-            )
-    }
-    )
+            @ApiResponse(responseCode = "201", description = "HTTP Status CREATED",content = @Content(schema = @Schema(implementation = ResponseDto.class))),
+            @ApiResponse(responseCode = "400", description = "HTTP Status Internal Server Error", content = @Content(schema = @Schema(implementation = ErrorResponseDto.class)))
+    })
     @PostMapping("/create")
     public ResponseEntity<ResponseDto> createCustomer(@Valid @RequestBody CustomerDto customerDto){
         customerService.createCustomer(customerDto);
