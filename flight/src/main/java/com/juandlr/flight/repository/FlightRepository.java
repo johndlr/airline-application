@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 @Repository
 public interface FlightRepository extends JpaRepository<Flight,Long> {
-    Optional<Flight> findByFlightId(Long flightId);
+    
     Optional<Flight> findByFlightNumber(String flightNumber);
 
     boolean existsByFlightNumber(String flightNumber);

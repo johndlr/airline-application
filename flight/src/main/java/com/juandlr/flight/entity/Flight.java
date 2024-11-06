@@ -1,16 +1,16 @@
 package com.juandlr.flight.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
 @Entity
-@RequiredArgsConstructor @Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
+@Getter @Setter
 @Table(name = "flights")
 public class Flight extends BaseEntity{
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
