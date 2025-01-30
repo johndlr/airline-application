@@ -6,11 +6,10 @@ import lombok.*;
 import java.util.Date;
 
 @Entity
-@AllArgsConstructor @NoArgsConstructor
+@NoArgsConstructor
 @Getter @Setter
 @Table(name = "flights")
 public class Flight extends BaseEntity{
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,4 +34,13 @@ public class Flight extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "aircraft_type_id")
     private AircraftType aircraftType;
+
+    public Flight(String flightNumber, String origin, String destination, Date departureTime, Date arrivalTime, AircraftType aircraftType) {
+        this.flightNumber = flightNumber;
+        this.origin = origin;
+        this.destination = destination;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+        this.aircraftType = aircraftType;
+    }
 }

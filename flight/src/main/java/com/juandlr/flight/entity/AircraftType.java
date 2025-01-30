@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "aircraft_types")
-@AllArgsConstructor @NoArgsConstructor @Getter @Setter
+@NoArgsConstructor @Getter @Setter
 public class AircraftType {
 
     @Id
@@ -22,4 +22,9 @@ public class AircraftType {
 
     private int capacity;
 
+    public AircraftType(String model, String manufacturer, int capacity) {
+        this.model = model;
+        this.manufacturer = manufacturer;
+        this.capacity = capacity;
+    }
 }
