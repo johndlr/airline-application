@@ -7,7 +7,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "customers")
-@Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor
+@Getter @Setter @ToString @NoArgsConstructor
 public class Customer extends BaseEntity{
 
     @Id
@@ -27,5 +27,13 @@ public class Customer extends BaseEntity{
     @OneToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
     private Address address;
+
+    public Customer(String name, String lastName, String email, String mobileNumber, Address address) {
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.mobileNumber = mobileNumber;
+        this.address = address;
+    }
 
 }
