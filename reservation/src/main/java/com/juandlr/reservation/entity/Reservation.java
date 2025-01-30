@@ -1,7 +1,6 @@
 package com.juandlr.reservation.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +9,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "reservations")
-@AllArgsConstructor @NoArgsConstructor @Getter @Setter
+@NoArgsConstructor @Getter @Setter
 public class Reservation extends BaseEntity{
 
     @Id
@@ -36,5 +35,14 @@ public class Reservation extends BaseEntity{
 
     @Column(name = "communication_sw")
     private Boolean communicationSw;
+
+    public Reservation(String reservationNumber, String flightNumber, String customerMobileNumber, String seatNumber, Date reservationDate, Boolean communicationSw) {
+        this.reservationNumber = reservationNumber;
+        this.flightNumber = flightNumber;
+        this.customerMobileNumber = customerMobileNumber;
+        this.seatNumber = seatNumber;
+        this.reservationDate = reservationDate;
+        this.communicationSw = communicationSw;
+    }
 
 }

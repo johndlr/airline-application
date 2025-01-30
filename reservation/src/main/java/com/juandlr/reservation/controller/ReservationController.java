@@ -2,7 +2,6 @@ package com.juandlr.reservation.controller;
 
 import com.juandlr.reservation.constants.HttpConstants;
 import com.juandlr.reservation.dto.*;
-import com.juandlr.reservation.entity.Reservation;
 import com.juandlr.reservation.service.ReservationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

@@ -12,7 +12,7 @@ import lombok.Setter;
 
 import java.util.Date;
 
-@AllArgsConstructor  @NoArgsConstructor @Getter @Setter
+@AllArgsConstructor @NoArgsConstructor @Getter @Setter
 @Schema(
         name = "Flight",
         description = "Schema to hold Flight information"

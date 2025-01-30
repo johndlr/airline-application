@@ -1,8 +1,7 @@
 package com.juandlr.reservation.service.client;
 
-import com.juandlr.reservation.dto.CustomerDto;
+
 import com.juandlr.reservation.dto.FlightDto;
-import com.juandlr.reservation.exception.CustomerNotFoundException;
 import com.juandlr.reservation.exception.FlightNotExistsException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;

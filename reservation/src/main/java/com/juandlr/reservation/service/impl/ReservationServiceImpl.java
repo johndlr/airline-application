@@ -11,9 +11,9 @@ import com.juandlr.reservation.repository.ReservationRepository;
 import com.juandlr.reservation.service.ReservationService;
 import com.juandlr.reservation.service.client.CustomerClient;
 import com.juandlr.reservation.service.client.FlightClient;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +35,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     private final StreamBridge streamBridge;
 
+    @Autowired
     public ReservationServiceImpl(ReservationRepository reservationRepository, @Qualifier("com.juandlr.reservation.service.client.CustomerClient") CustomerClient customerClient, @Qualifier("com.juandlr.reservation.service.client.FlightClient") FlightClient flightClient, StreamBridge streamBridge) {
         this.reservationRepository = reservationRepository;
         this.customerClient = customerClient;
@@ -133,7 +134,7 @@ public class ReservationServiceImpl implements ReservationService {
         boolean isUpdated = false;
         if (reservationNumber != null){
             Reservation reservation = reservationRepository.findByReservationNumber(reservationNumber)
-                    .orElseThrow(()-> new ReservationNotFoundException("\"Reservation not found, please check your information."));
+                    .orElseThrow(()-> new ReservationNotFoundException("Reservation not found, please check your information."));
             reservation.setCommunicationSw(true);
             reservationRepository.save(reservation);
             isUpdated = true;

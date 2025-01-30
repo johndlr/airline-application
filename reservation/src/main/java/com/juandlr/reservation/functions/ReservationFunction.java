@@ -8,9 +8,18 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.function.Consumer;
 
+/**
+ * Configuration class for reservation-related functions.
+ */
 @Configuration
 public class ReservationFunction {
 
+  /**
+   * Bean that defines a Consumer to update the communication status of a reservation.
+   * 
+   * @param reservationService the service used to update the communication status
+   * @return a Consumer that takes a reservation number as input and updates its communication status
+   */
     private static final Logger log = LoggerFactory.getLogger(ReservationFunction.class);
 
     @Bean
